@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Postres Tentación - Venta de postres artesanales. ¡Endulza tu día con un clic!">
+    <title>Postres Tentación • Postres Artesanales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+        
+        :root {
+            --tw-color-primary: #ec4899;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .tail-container * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgb(236 72 153);
+        }
+        
+        .floating-whatsapp {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .modal {
+            animation: modalPop 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="tail-container">
+    <!-- NAVBAR -->
+    <nav class="bg-white border-b shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-amber-500 rounded-2xl flex items-center justify-center text-4xl shadow-inner">
+                    🧁
+                </div>
+                <div>
+                    <h1 class="heading-font text-3xl font-bold tracking-tighter text-pink-600">Postres Tentación</h1>
+                    <p class="text-[10px] text-amber-600 -mt-1 font-medium">Artesanales • Frescos • Deliciosos</p>
+                </div>
+            </div>
+
+            <!-- Menú desktop -->
+            <div class="hidden md:flex items-center gap-8 text-lg font-medium">
+                <a href="#inicio" onclick="smoothScrollTo('inicio')" class="hover:text-pink-600">Inicio</a>
+                <a href="#menu" onclick="smoothScrollTo('menu')" class="hover:text-pink-600">Menú</a>
+                <a href="#nosotros" onclick="smoothScrollTo('nosotros')" class="hover:text-pink-600">Nosotros</a>
+                <a href="#contacto" onclick="smoothScrollTo('contacto')" class="hover:text-pink-600">Contacto</a>
+            </div>
+
+            <!-- Carrito y WhatsApp -->
+            <div class="flex items-center gap-4">
+                <!-- Botón carrito -->
+                <button onclick="toggleCart()" 
+                        class="flex items-center gap-2 bg-white border-2 border-pink-200 hover:border-pink-500 text-pink-700 px-5 py-3 rounded-3xl font-semibold text-sm">
+                    <span class="text-2xl">🛒</span>
+                    <span id="cart-count-badge" class="bg-pink-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center">0</span>
+                    Carrito
+                </button>
+
+                <!-- Botón WhatsApp flotante pequeño -->
+                <a href="https://wa.me/59163363771?text=Hola%20Postres%20Tentación%2C%20quiero%20hacer%20un%20pedido%20%F0%9F%8D%B0"
+                   target="_blank"
+                   class="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-3xl font-semibold text-sm shadow-lg">
+                    <span class="text-2xl">📱</span>
+                    <span>WhatsApp</span>
+                </a>
+
+                <!-- Menú móvil -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-3xl text-pink-600">
+                    ☰
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-6 py-4">
+            <div class="flex flex-col gap-4 text-lg">
+                <a href="#inicio" onclick="smoothScrollTo('inicio');toggleMobileMenu()" class="py-2">🏠 Inicio</a>
+                <a href="#menu" onclick="smoothScrollTo('menu');toggleMobileMenu()" class="py-2">📜 Menú</a>
+                <a href="#nosotros" onclick="smoothScrollTo('nosotros');toggleMobileMenu()" class="py-2">👩‍🍳 Nosotros</a>
+                <a href="#contacto" onclick="smoothScrollTo('contacto');toggleMobileMenu()" class="py-2">📞 Contacto</a>
+                <a href="https://wa.me/59163363771?text=Hola%20Postres%20Tentación%2C%20quiero%20información" 
+                   target="_blank"
+                   class="bg-green-500 text-white text-center py-4 rounded-3xl font-semibold flex items-center justify-center gap-3">
+                    <span class="text-3xl">💬</span> Enviar mensaje por WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="inicio" class="hero-bg text-white py-24">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 bg-white/20 text-white text-sm font-medium px-6 py-2 rounded-3xl backdrop-blur-md">
+                    🍰 Entrega en 60 minutos • La Paz, Bolivia
+                </div>
+                
+                <h1 class="heading-font text-6xl md:text-7xl font-bold leading-none tracking-tighter">
+                    ¡Endulza tu día<br>con amor y sabor!
+                </h1>
+                
+                <p class="text-2xl md:text-3xl font-light opacity-90">
+                    Postres artesanales hechos con ingredientes frescos.<br>
+                    Perfectos para ti, tu familia o para regalar.
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="smoothScrollTo('menu')"
+                            class="bg-white text-pink-600 hover:bg-amber-100 text-xl font-semibold px-10 py-6 rounded-3xl flex items-center gap-3 shadow-xl">
+                        <span>Ver nuestro menú</span>
+                        <span class="text-3xl">👇</span>
+                    </button>
+                    
+                    <!-- BOTÓN PRINCIPAL PARA ENVIAR PEDIDO DIRECTO (WhatsApp) -->
+                    <a href="https://wa.me/59163363771?text=Hola%20%F0%9F%8D%B0%20Quiero%20hacer%20un%20pedido%20ahora%20mismo%20desde%20la%
